@@ -19,7 +19,7 @@ number alterations on a cytoband level using hg19 coordinates, this will add two
 Usage
 -----
 * Without providing output directory: `python CallCNAFromAbsolute.py geneLevelAnnotated/ --build_for_bands hg19`
-* Providing output directory: `python CallCNAFromAbsolute.py geneLevelAnnotated/ --output_dir resultsFolder/ --build_for_bandss hg19`
+* Providing output directory: `python CallCNAFromAbsolute.py geneLevelAnnotated/ --output_dir resultsFolder/ --build_for_bands hg19`
 
 Output
 ------
@@ -29,6 +29,29 @@ Example output row:
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
  |AC007435.1|	2|	172967066|	DLX2|	0-|	179666966|	TTN|	|	618|	OCSCC-OC033-TP-NB-SM-F3R7J-SM-F3R8D|	5|	4.99996|	0|	5|	1|	0.987910135|	del|	amp|	0|	0.980218414|	0.958944192|	0.012089865|	q31.1|	q|
 
-Example cytoband summary file row:
+Example cytoband summary file .tsv:
 
-`amp  11q  11q13.2`
+`
+amp  11q  11q13.2
+amp	11q	11q13.2
+amp	13q	13q12.2
+amp	15q	15q15.1
+amp	4q	4q35.1
+amp	7q	7q11.23
+amp	9q	9q34.3
+del	13q	13q21.1
+del	17p	17p12
+del	17p	17p13.1
+del	17p	17p13.3
+del	19q	19q13.42
+del	3p	3p21.31
+del	3p	3p26.3
+del	4p	4p14
+del	4p	4p16.3
+del	6q	6q12
+del	6q	6q13
+del	7q	7q22.1
+del	9p	9p24.3
+del	9q	9q34.3
+high amp	11q	11q13.3
+`
