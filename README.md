@@ -29,5 +29,3 @@ Example output row:
 
 Example cytoband summary file row:
     `amp    11q 11q13.2`
-
-Example
