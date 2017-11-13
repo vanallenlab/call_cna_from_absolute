@@ -31,10 +31,9 @@ Example output row:
 
 Example cytoband summary file .tsv:
 
-`
-amp  11q  11q13.2
-amp	11q	11q13.2
-amp	13q	13q12.2
+`amp  11q  11q13.2`
+`amp	11q	11q13.2`
+`amp	13q	13q12.2`
 amp	15q	15q15.1
 amp	4q	4q35.1
 amp	7q	7q11.23
@@ -54,4 +53,4 @@ del	7q	7q22.1
 del	9p	9p24.3
 del	9q	9q34.3
 high amp	11q	11q13.3
-`
+
