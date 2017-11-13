@@ -14,7 +14,7 @@ The following parameters can be provided to an AbsMafAnalyzer object:
 * `output_dir`: Optional. The path to the desired output directory. If not provided, output files will by default be placed in the input_dir provided.
 
 * `build_for_bands`: Optional. Set this parameter to "hg19" in order to add cytoband information. In addition to creating a file summarizing the copy
-number alterations on a cytoband level using hg19 coordinates, this will add two extra columns to the output files, "band" and "arm" (q.31.1 and q might, for example).
+number alterations on a cytoband level using hg19 coordinates, this will add two extra columns to the output files, "band" and "arm" (q.31.1 and q, for example).
 
 Usage
 -----
