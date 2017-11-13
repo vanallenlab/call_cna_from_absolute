@@ -27,7 +27,7 @@ Example output row:
 
 |genes	|chr|	start|	start_gene|	start_exon|	end	|end_gene	|segment_end_exon	|Num_Probes	|sample	|modal_total_cn	|expected_total_cn	|rescaled.cn.a1	|rescaled.cn.a2	|focality_1	|focality_2	|called_CNA1	|called_CNA2	|fr_below_1	|fr_above_1	|fr_below_2	|fr_above_2	|band	|arm|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
- |AC007435.1|	2|	172967066|	DLX2|	0-|	179666966|	TTN|		618|	OCSCC-OC033-TP-NB-SM-F3R7J-SM-F3R8D|	5|	4.99996|	0|	5|	1|	0.987910135|	del|	amp|	0|	0.980218414|	0.958944192|	0.012089865|	q31.1|	q|`
+ |AC007435.1|	2|	172967066|	DLX2|	0-|	179666966|	|TTN|		618|	OCSCC-OC033-TP-NB-SM-F3R7J-SM-F3R8D|	5|	4.99996|	0|	5|	1|	0.987910135|	del|	amp|	0|	0.980218414|	0.958944192|	0.012089865|	q31.1|	q|`
 
 Example cytoband summary file row:
     `amp    11q 11q13.2`
