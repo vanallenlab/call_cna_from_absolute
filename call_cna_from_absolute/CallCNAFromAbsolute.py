@@ -19,6 +19,9 @@ import math
 import argparse
 from collections import defaultdict
 
+def intToFloatStr(value):
+    return str(float(value))
+
 def GenCNADistribution(geneSegDF):
     """iterates through pandas dataframe of the geneSegFile and generates a dictionary of copy number keys and
     frequency values"""
@@ -54,16 +57,16 @@ def GenCNADistribution(geneSegDF):
             rCNA2 = expectedTotal - rCNA1
 
         if str(rCNA1) in histCNAs: # add # of base pairs
-            histCNAs[str(rCNA1)]['bp'] += segEnd - segStart + 1
+            histCNAs[intToFloatStr(rCNA1)]['bp'] += segEnd - segStart + 1
         else: # not seen previously
-            histCNAs[str(rCNA1)] = {}
-            histCNAs[str(rCNA1)]['bp'] = segEnd - segStart + 1
+            histCNAs[intToFloatStr(rCNA1)] = {}
+            histCNAs[intToFloatStr(rCNA1)]['bp'] = segEnd - segStart + 1
 
         if str(rCNA2) in histCNAs: # add # of base pairs
-            histCNAs[str(rCNA2)]['bp'] += segEnd - segStart + 1
+            histCNAs[intToFloatStr(rCNA2)]['bp'] += segEnd - segStart + 1
         else: # not seen previously
-            histCNAs[str(rCNA2)] = {}
-            histCNAs[str(rCNA2)]['bp'] = segEnd - segStart + 1
+            histCNAs[intToFloatStr(rCNA2)] = {}
+            histCNAs[intToFloatStr(rCNA2)]['bp'] = segEnd - segStart + 1
 
         totalBP += 2*(segEnd - segStart + 1)
         totalSeg += 1
@@ -71,13 +74,13 @@ def GenCNADistribution(geneSegDF):
     # Now iterate through the histogram to generate percentiles at each copy number
     cns = sorted([float(i) for i in histCNAs.keys()])
 
-    fractionBelow = 0
+    fractionBelow = 0.0
     for i in range(0, len(cns)):
         cn = cns[i]
-        histCNAs[str(cn)]['fractionBelow'] = fractionBelow
-        histCNAs[str(cn)]['fraction'] = histCNAs[str(cn)]['bp']/float(totalBP)
-        sys.stdout.write("loading copy number {}: {} {}\n".format(cn, fractionBelow, histCNAs[str(cn)]['bp']/float(totalBP)))
-        fractionBelow += histCNAs[str(cn)]['bp']/float(totalBP)
+        histCNAs[intToFloatStr(cn)]['fractionBelow'] = fractionBelow
+        histCNAs[intToFloatStr(cn)]['fraction'] = histCNAs[intToFloatStr(cn)]['bp']/float(totalBP)
+        sys.stdout.write("loading copy number {}: {} {}\n".format(cn, fractionBelow, histCNAs[intToFloatStr(cn)]['bp']/float(totalBP)))
+        fractionBelow += histCNAs[intToFloatStr(cn)]['bp']/float(totalBP)
 
     sys.stdout.write("fractionBelow should equal 1: {}\n".format(fractionBelow))
     sys.stdout.write("Total number of segments considered: {}\n".format(totalSeg))
@@ -90,12 +93,12 @@ def GenCNADistribution(geneSegDF):
 def CalcFocality(cn, CNAHist):
     """Given a copy number and a distribution of copy numbers, determines the fraction of the genome that is
      < or > the value (whichever is smaller), returns (fractionbelow, fractionabove, focality)"""
-    if str(cn) not in CNAHist:
+    if intToFloatStr(cn) not in CNAHist:
         sys.stdout.write("{} not found in copy number histogram.".format(cn))
         exit()
 
-    fractionBelow = CNAHist[str(cn)]['fractionBelow'] 
-    fraction = CNAHist[str(cn)]['fraction']
+    fractionBelow = CNAHist[intToFloatStr(cn)]['fractionBelow']
+    fraction = CNAHist[intToFloatStr(cn)]['fraction']
     fractionAbove = 1 - fractionBelow - fraction
 
     if fractionBelow < fractionAbove:
