@@ -1,27 +1,55 @@
 # CallCNAFromAbsolute
 Given gene annotated segtab files from ABSOLUTE generate amplifications, LOH, and deletions based on process from Brastianos, Carter et al Cancer Discovery 2015. Implementation by David Liu.
 
-Installation
-------------
-Click the green Clone or Download button above, copy the presented web URL, and then paste it into your terminal, preceded by the command 'git clone'.
-  `git clone https://github.com/vanallenlab/call_cna_from_absolute.git`
+## Installation
+Code in this repository uses Python 2.7. We recommend using a [virtual environment](https://docs.python.org/3/tutorial/venv.html) and running Python with either [Anaconda](https://www.anaconda.com/download/) or  [Miniconda](https://conda.io/miniconda.html). After installing Anaconda or Miniconda, you can clone this repository and set up a virtual environment by running the following code:
 
-Parameters
-----------
-The following parameters can be provided to an AbsMafAnalyzer object:
-* `input_dir`: The path to directory containing the input (gene-level annotated segment) *.annotated files.
+```bash
+git clone https://github.com/vanallenlab/call_cna_from_absolute.git
+conda create -y CallCNAFromAbsolute -n  python=2.7
+conda activate CallCNAFromAbsolute
+cd call_cna_from_absolute
+pip install -r requirements.txt
+```
 
-* `output_dir`: Optional. The path to the desired output directory. If not provided, output files will by default be placed in the input_dir provided.
+## Preprocessing and preparation
+After [extracting your preferred ABSOLUTE solution](https://portal.firecloud.org/#methods/amaro/absolute_extract/1), perform the following to successfully preprocess your data for this script:
+- Annotate your ABSOLUTE seg files with genes using [tkeenan/CNV_Oncotator_Workflow_VA](https://portal.firecloud.org/#methods/tkeenan/CNV_Oncotator_Workflow_VA/2)
+- Download the [annotated seg files from your pair entity table](https://github.com/vanallenlab/terra-helper/blob/master/documentation.md#downloaderpy) 
+- Copy your annotated seg files to your input directory for this script and rename their suffix so that they end with `.annotated`.
+```bash
+for f in *; do 
+  cp annotated_seg_folder/"$f" /path/to/callCNAfromABSOLUTE/inputs/"$f.annotated"
+done
+```
 
-* `build_for_bands`: Optional. Set this parameter to "hg19" in order to add cytoband information. In addition to creating a file summarizing the copy
-number alterations on a cytoband level using hg19 coordinates, this will add two extra columns to the output files, "band" and "arm" (q.31.1 and q, for example).
+## Usage
+The following parameters can be provided to an AbsMafAnalyzer object.
 
-Usage
------
-* Without providing output directory: `python CallCNAFromAbsolute.py geneLevelAnnotated/ --build_for_bands hg19`
-* Providing output directory: `python CallCNAFromAbsolute.py geneLevelAnnotated/ --output_dir resultsFolder/ --build_for_bands hg19`
+Required arguments:
+```
+    input_dir       <string>    The path to directory containing the input (gene-level annotated segment *.annotated files
+```
 
-Output
+Optional arguments:
+```
+    output_dir      <string>    The path to the desired output directory. If not provided, output files will by default be placed in the input_dir provided.
+    build_for_bands <string>    Set this parameter to "hg19" in order to add cytoband information. In addition to creating a file summarizing the copy number alterations on a cytoband level using hg19 coordinates, this will add two extra columns to the output files, "band" and "arm" (q.31.1 and q, for example).
+```
+
+Example:
+
+Without providing output directory,
+```bash
+python CallCNAFromAbsolute.py geneLevelAnnotated/ --build_for_bands hg19
+```
+
+With providing an output directory, `resultsFolder/`,
+```
+python CallCNAFromAbsolute.py geneLevelAnnotated/ --output_dir resultsFolder/ --build_for_bands hg19
+```
+
+Example outputs
 ------
 Example output row:
 
