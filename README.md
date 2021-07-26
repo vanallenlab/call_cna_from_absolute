@@ -6,7 +6,7 @@ Code in this repository uses Python 2.7. We recommend using a [virtual environme
 
 ```bash
 git clone https://github.com/vanallenlab/call_cna_from_absolute.git
-conda create -y CallCNAFromAbsolute -n  python=2.7
+conda create -y -n CallCNAFromAbsolute python=2.7
 conda activate CallCNAFromAbsolute
 cd call_cna_from_absolute
 pip install -r requirements.txt
